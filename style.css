@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+header {
+  text-align: center;
+  text-transform: capitalize;
+  padding-bottom: 7px;
+  border-bottom: 3px solid;
+}
+section {
+  padding: 10px 0;
+}
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 3px solid;
+}
+input,
+.btn {
+  width: 60%;
+  text-align: center;
+  padding: 7px;
+  margin: 4px 0;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background-color: #fcf8f3;
+}
+.btn {
+  font-weight: bold;
+  font-size: 14px;
+  background-color: rgb(217, 223, 223);
+  margin: 20px 0;
+  color: rgb(175, 26, 26);
+  transition: 0.3s;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: black;
+  color: rgb(212, 182, 157);
+  letter-spacing: 1px;
+}
+.price {
+  width: 60%;
+  text-align: center;
+}
+.inp12-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.price input {
+  background-color: #222218;
+  color: white;
+}
+.inp1 {
+  width: 100%;
+}
+.inp12 {
+  width: 49%;
+  margin: 10px 0;
+}
+h4 {
+  margin: 20px 0;
+}
+.btn-container {
+  width: 60%;
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+}
+table {
+  width: 100%;
+}
+th,
+td {
+  text-align: center;
+}
+table .btn:hover {
+  letter-spacing: normal;
+}

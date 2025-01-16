@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUDS.JS</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h2>Cruds</h2>
+        <p>product managment system</p>
+      </header>
+      <section>
+        <form>
+          <input type="text" id="productName" placeholder="Product Name" />
+          <input type="text" id="title" placeholder="Title" />
+          <input type="text" id="category" placeholder="Category" />
+          <input type="number" id="count" placeholder="Count" />
+          <div class="price">
+            <input
+              onkeyup="gettotalPrice()"
+              type="number"
+              class="inp1"
+              id="price"
+              placeholder="Price"
+            />
+            <div class="inp12-container">
+              <input
+                onkeyup="gettotalPrice()"
+                type="number"
+                class="inp12"
+                id="taxes"
+                placeholder="Taxes"
+              />
+              <input
+                onkeyup="gettotalPrice()"
+                type="number"
+                class="inp12"
+                id="ads"
+                placeholder="Ads"
+              />
+            </div>
+            <input
+              onkeyup="gettotalPrice()"
+              type="number"
+              class="inp1"
+              id="discount"
+              placeholder="Discount"
+            />
+            <h4>Total price is <span id="totalPrice">0</span> EGP</h4>
+          </div>
+          <button class="btn" id="add" style="display: block">Add Product</button>
+          <button class="btn" id="done" style="display: none"> Done </button>
+        </form>
+      </section>
+      <section>
+        <form>
+          <input type="text" id="searchInput" placeholder="Serach" />
+          <div class="btn-container">
+            <button class="btn" id="searchName">Search by Name</button>
+            <button class="btn" id="searchCategory">Serach by Category</button>
+          </div>
+        </form>
+      </section>
+      <section>
+        <div class="btn" id="clear" style="margin: 0 auto 20px ; display: none;" >Clear All Data</div>
+        <div class="btn" id="reset" style="margin: 0 auto 20px ; display: none;" >Reset Data <span id="tester" ></span> </div>
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Name</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Taxes</th>
+              <th>Ads</th>
+              <th>Discount</th>
+              <th>Total Price</th>
+              <th>Count</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
