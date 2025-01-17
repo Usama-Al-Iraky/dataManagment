@@ -153,11 +153,12 @@ const updateProduct = (id) => {
 
 // to remove all data
 let removedProducts;
-if (localStorage.products !== "") {
+if (localStorage.removedProducts != null) {
   removedProducts = JSON.parse(localStorage.removedProducts);
 } else {
   removedProducts = [];
 }
+console.log(products.length)
 if (products.length > 0) {
   clearBtn.style.display = "block";
 }
