@@ -88,3 +88,8 @@ td {
 table .btn:hover {
   letter-spacing: normal;
 }
+.viwe {
+  height: 41vh;
+  overflow: auto;
+  border-bottom: 3px solid;
+}

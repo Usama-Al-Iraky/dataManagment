@@ -16,7 +16,6 @@ let deleteBtn = document.getElementById("delete");
 let doneBtn = document.getElementById("done");
 let clearBtn = document.getElementById("clear");
 let resetBtn = document.getElementById("reset");
-
 // //////////////////
 const gettotalPrice = () => {
   if (price.value !== "" && taxes.value !== "" && ads.value !== "") {
@@ -51,8 +50,12 @@ const createDtat = (e) => {
     category.value !== "" &&
     price.value !== ""
   ) {
+    let date = Date.now();
+    let number = Math.floor(Math.random() * 1000);
+    let uniqueId = date - number;
+
     let newProduct = {
-      id: products.length + 1,
+      id: uniqueId,
       name: productName.value,
       title: title.value,
       category: category.value,
@@ -81,12 +84,13 @@ const clearInputsAfterAdd = () => {
   ads.value = "";
   discount.value = "";
 };
-// to render the products to user to see it 
+// to render the products to user to see it
+
 const renderData = () =>
   (tbody.innerHTML = products
     .map(
-      (item) => `<tr>
-<td>${item.id}</td>
+      (item, index) => `<tr>
+<td>${index + 1}</td>
 <td>${item.name}</td>
 <td>${item.title}</td>
 <td>${item.category}</td>
@@ -158,7 +162,6 @@ if (localStorage.removedProducts != null) {
 } else {
   removedProducts = [];
 }
-console.log(products.length)
 if (products.length > 0) {
   clearBtn.style.display = "block";
 }
@@ -189,3 +192,11 @@ resetBtn.addEventListener("click", () => {
   resetBtn.style.display = " none";
   window.location.reload();
 });
+// to reload page whene invoice confirmed
+window.addEventListener("storage", (e)=>{
+  if (e.key === "invoiceUpdated" && e.newValue === "true") {
+    window.location.reload();
+  }
+});
+
+
