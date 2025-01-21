@@ -17,14 +17,10 @@ let doneBtn = document.getElementById("done");
 let clearBtn = document.getElementById("clear");
 let resetBtn = document.getElementById("reset");
 // //////////////////
-const gettotalPrice = () => {
+const getTotalPrice = () => {
   if (price.value !== "" && taxes.value !== "" && ads.value !== "") {
-    let result =
-      Number(price.value) +
-      Number(taxes.value) +
-      Number(ads.value) -
-      Number(discount.value);
-    totalPrice.innerHTML = result;
+    let result = +price.value + +taxes.value + +ads.value - +discount.value;
+    console.log(result);
     totalPrice.innerHTML = result;
   } else {
     totalPrice.innerHTML = 0;
@@ -50,10 +46,7 @@ const createDtat = (e) => {
     category.value !== "" &&
     price.value !== ""
   ) {
-    let date = Date.now();
-    let number = Math.floor(Math.random() * 1000);
-    let uniqueId = date - number;
-
+    let uniqueId = Date.now() - Math.floor(Math.random() * 1000);
     let newProduct = {
       id: uniqueId,
       name: productName.value,
@@ -65,7 +58,7 @@ const createDtat = (e) => {
       taxes: +taxes.value,
       ads: +ads.value,
       discount: +discount.value,
-      totalPrice: Number(totalPrice.innerHTML),
+      totalPrice: +totalPrice.innerHTML,
     };
     products = [...products, newProduct];
     localStorage.setItem("products", JSON.stringify(products));
@@ -85,7 +78,6 @@ const clearInputsAfterAdd = () => {
   discount.value = "";
 };
 // to render the products to user to see it
-
 const renderData = () =>
   (tbody.innerHTML = products
     .map(
@@ -117,9 +109,8 @@ const deleteProduct = (id) => {
   } else {
     productsAfterDlete.splice(index, 1);
   }
-
   localStorage.setItem("products", JSON.stringify(productsAfterDlete));
-  window.location.reload();
+  renderData();
 };
 // function to update product data
 const updateProduct = (id) => {
@@ -153,6 +144,7 @@ const updateProduct = (id) => {
     productsBeforUpdate[index] = updatedProduct;
     localStorage.setItem("products", JSON.stringify(productsBeforUpdate));
   };
+  renderData();
 };
 
 // to remove all data
@@ -165,7 +157,6 @@ if (localStorage.removedProducts != null) {
 if (products.length > 0) {
   clearBtn.style.display = "block";
 }
-
 clearBtn.addEventListener("click", () => {
   removedProducts = products;
   localStorage.setItem("removedProducts", JSON.stringify(removedProducts));
@@ -179,7 +170,6 @@ clearBtn.addEventListener("click", () => {
     tester = tester - 1;
     testerInner.innerHTML = tester;
   }, 1000);
-
   setInterval(() => {
     resetBtn.style.display = "none";
     window.location.reload();
@@ -193,10 +183,8 @@ resetBtn.addEventListener("click", () => {
   window.location.reload();
 });
 // to reload page whene invoice confirmed
-window.addEventListener("storage", (e)=>{
+window.addEventListener("storage", (e) => {
   if (e.key === "invoiceUpdated" && e.newValue === "true") {
     window.location.reload();
   }
 });
-
-

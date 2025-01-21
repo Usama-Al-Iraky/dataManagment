@@ -1,24 +1,32 @@
-let nameInput = document.getElementById("name");
-let tbody = document.getElementById("tbody");
-let tbodyTwo = document.getElementById("tbodyTwo");
-let compelete = document.getElementById("compelete");
-let products = JSON.parse(localStorage.getItem("products"));
+let products = JSON.parse(localStorage.getItem("products")) || [];
 
+const nameInput = document.getElementById("name");
+const tbody = document.getElementById("tbody");
+const tbodyTwo = document.getElementById("tbodyTwo");
+const compelete = document.getElementById("compelete");
+const invoiceTotalPrice = document.getElementById("invoiceTotalPrice");
+const invoiceDiscount = document.getElementById("invoiceDiscount");
+const customerName = document.getElementById("customerName");
 // search in productes with product name
+let filteredProducts = [];
 const findProduct = () => {
-  let newProducts = [];
-  products.find((item) => {
+  let filterProducts = [];
+  products.filter((item) => {
     if (item.name.toLowerCase().startsWith(nameInput.value.toLowerCase())) {
-      if (nameInput.value !== "") {
-        newProducts = [...newProducts, item];
+      if (nameInput.value === "") {
+        filterProducts = [];
       } else {
-        newProducts = [];
+        filterProducts.push(item);
       }
-      let filterdeProducts = [...new Set(newProducts)];
-
-      tbody.innerHTML = filterdeProducts
-        .map(
-          (i, index) => `<tr>
+      filteredProducts = [...new Set(filterProducts)];
+    }
+  });
+  renderProducts();
+};
+const renderProducts = () => {
+  tbody.innerHTML = filteredProducts
+    .map(
+      (i, index) => `<tr>
 <td>${index + 1}</td>
 <td>${i.name}</td>
 <td>${i.title}</td>
@@ -31,14 +39,13 @@ const findProduct = () => {
 <td>${i.count}</td>
 <td><button class="btn" onClick='selectProduct(${i.id})'>Select</button></td>
 </tr>`
-        )
-        .join("");
-    }
-  });
+    )
+    .join("");
 };
 // to select the product and add to the invoice
 let selectedProducts = [];
-let uniqueSelectedProducts = [];
+let inovoiceTotalPriceShow = 0;
+let totalPriceBeforDiscount = 0;
 const selectProduct = (id) => {
   let selectedProduct = products.find((item) => item.id === id);
   let index = selectedProducts.findIndex((i) => i.id === id);
@@ -48,10 +55,11 @@ const selectProduct = (id) => {
   } else {
     selectedProducts.push({ ...selectedProduct, count: 1 });
   }
-  uniqueSelectedProducts = [...new Set(selectedProducts.map((p) => p.id))].map(
-    (id) => selectedProducts.find((p) => p.id === id)
-  );
-  tbodyTwo.innerHTML = uniqueSelectedProducts
+  renderSelectedProducts();
+  GetInvoiceTotalPrice();
+};
+const renderSelectedProducts = () => {
+  tbodyTwo.innerHTML = selectedProducts
     .map(
       (m, index) => `<tr>
         <td>${index + 1}</td>
@@ -64,13 +72,57 @@ const selectProduct = (id) => {
         <td>${m.discount}</td>
         <td>${m.totalPrice}</td>
         <td>${m.count}</td>
+        <td>
+          <div class="btns" >
+            <button class="btn" onClick='decreaseProduct(${m.id})'>-</button>
+            <button class="btn" onClick='increaseProduct(${m.id})'>+</button>
+          </div>
+        </td>
       </tr>`
     )
     .join("");
+};
+// Manage Selected Product
+
+const increaseProduct = (id) => {
+  const selectedIndex = selectedProducts.findIndex((index) => index.id === id);
+  if (selectedIndex !== -1) {
+    selectedProducts[selectedIndex] = {
+      ...selectedProducts[selectedIndex],
+      count: selectedProducts[selectedIndex].count + 1,
+    };
+  }
+  renderSelectedProducts();
   GetInvoiceTotalPrice();
 };
-// ////////////////////////////////
-
+const decreaseProduct = (id) => {
+  const selectedIndex = selectedProducts.findIndex((index) => index.id === id);
+  if (selectedIndex !== -1) {
+    if (selectedProducts[selectedIndex].count > 1) {
+      selectedProducts[selectedIndex] = {
+        ...selectedProducts[selectedIndex],
+        count: selectedProducts[selectedIndex].count - 1,
+      };
+    } else {
+      selectedProducts.splice(selectedIndex, 1);
+    }
+  }
+  renderSelectedProducts();
+  GetInvoiceTotalPrice();
+};
+// to render total price in the invoice
+let invoiceTotalDiscount = 0;
+const getInvoiceTotalDiscount = () => {
+  invoiceTotalDiscount = +invoiceDiscount.value;
+  GetInvoiceTotalPrice();
+};
+const GetInvoiceTotalPrice = () => {
+  totalPriceBeforDiscount = selectedProducts.reduce((a, p) => {
+    return a + +p.totalPrice * +p.count;
+  }, 0);
+  inovoiceTotalPriceShow = +totalPriceBeforDiscount - +invoiceTotalDiscount;
+  invoiceTotalPrice.innerHTML = +inovoiceTotalPriceShow;
+};
 // ////////////////////////////////
 let invoice;
 if (localStorage.invoices != null) {
@@ -79,29 +131,42 @@ if (localStorage.invoices != null) {
   invoice = [];
 }
 // to confirm the invoice
-compelete.addEventListener("click", () => {
-  uniqueSelectedProducts.map((produ) => {
-    let prodIdex = products.findIndex((pro) => pro.id === produ.id);
+let date = Date.now();
+let number = Math.floor(Math.random() * 1000);
+let uniqueId = date - number;
+const confirmInvoice = () => {
+  if (!customerName.value.trim()) {
+    alert("Please enter the customer name.");
+    return;
+  }
+  const currentInvoice = {
+    id: uniqueId,
+    invoice: selectedProducts,
+    priceBeforDiscout: totalPriceBeforDiscount,
+    discount: invoiceTotalDiscount,
+    FinalInvoicePrice: inovoiceTotalPriceShow,
+    date: Date.apply(),
+    name: customerName.value,
+  };
+  selectedProducts.forEach((produ) => {
+    const prodIdex = products.findIndex((pro) => pro.id === produ.id);
     if (prodIdex !== -1) {
       products[prodIdex].count -= produ.count;
       if (products[prodIdex].count <= 0) {
         products.splice(prodIdex, 1);
       }
-      localStorage.setItem("products", JSON.stringify(products));
     }
-    invoice = [...invoice, [[...new Set(selectedProducts)], Date.apply()]];
-    localStorage.setItem("invoices", JSON.stringify(invoice));
-    window.location.reload();
-    // to tell stor page that the invoice confirmed
-    localStorage.setItem("invoiceUpdated", "true");
   });
-});
-
-// to render total price in the invoice
-const GetInvoiceTotalPrice = () => {
-  let invoiceTotalPrice = document.getElementById("invoiceTotalPrice");
-  let t = selectedProducts.reduce((a, p) => {
-    return a + p.totalPrice * p.count;
-  }, 0);
-  invoiceTotalPrice.innerHTML = +t;
+  invoice.push(currentInvoice);
+  localStorage.setItem("products", JSON.stringify(products));
+  localStorage.setItem("invoices", JSON.stringify(invoice));
+  selectedProducts = [];
+  renderSelectedProducts();
+  GetInvoiceTotalPrice();
+  renderProducts();
+  nameInput.value = "";
+  customerName.value = "";
+  invoiceDiscount.value = "";
+  invoiceTotalPrice.innerHTML = 0;
 };
+compelete.addEventListener("click", confirmInvoice);

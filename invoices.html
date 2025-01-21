@@ -1,11 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./Css/mainStyle.css" />
     <title>Invoices</title>
-</head>
-<body>
-    <script src="./Js/invoices.js" ></script>
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div>
+          <h2>Cruds</h2>
+          <p>product managment system</p>
+        </div>
+        <div>
+          <nav>
+            <a class="btn" href="/index.html"> To Invoice</a>
+            <a class="btn" href="/manageProducts.html"> To Add Products</a>
+            <a class="btn" href="/invoices.html"> To Invoices</a>
+          </nav>
+        </div>
+      </header>
+      <section class="viwe">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </section>
+      <section class="viwe">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Name</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Taxes</th>
+              <th>Ads</th>
+              <th>Discount</th>
+              <th>Total Price</th>
+              <th>Count</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="invoicesBody"></tbody>
+        </table>
+      </section>
+      </section>
+      <section class="viwe" style="height: 10vh;border: none; ">
+        <table >
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Date</td>
+              <td>Price Befor</td>
+              <td>Discount</td>
+              <td>Price After</td>
+            </tr>
+          </thead>
+          <tbody id="tfoot"></tbody>
+        </table>
+      </section>
+    </div>
+    <script src="./Js/invoices.js"></script>
+  </body>
 </html>
