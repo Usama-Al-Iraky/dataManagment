@@ -40,7 +40,7 @@ const showInvoice = (id) => {
         <td>${invo.date.slice(0, 25)}</td>
         <td>${invo.priceBeforDiscout}</td>
         <td>${invo.discount}</td>
-        <td>${invo.FinalInvoicePrice}</td>
+        <td>${invo.finalInvoicePrice}</td>
       </tr>`;
 };
 console.log(invoices);

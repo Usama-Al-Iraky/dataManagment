@@ -144,7 +144,7 @@ const confirmInvoice = () => {
     invoice: selectedProducts,
     priceBeforDiscout: totalPriceBeforDiscount,
     discount: invoiceTotalDiscount,
-    FinalInvoicePrice: inovoiceTotalPriceShow,
+    finalInvoicePrice: inovoiceTotalPriceShow,
     date: Date.apply(),
     name: customerName.value,
   };
