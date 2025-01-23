@@ -83,7 +83,6 @@ const renderSelectedProducts = () => {
     .join("");
 };
 // Manage Selected Product
-
 const increaseProduct = (id) => {
   const selectedIndex = selectedProducts.findIndex((index) => index.id === id);
   if (selectedIndex !== -1) {
@@ -131,10 +130,12 @@ if (localStorage.invoices != null) {
   invoice = [];
 }
 // to confirm the invoice
-let date = Date.now();
-let number = Math.floor(Math.random() * 1000);
-let uniqueId = date - number;
+let uniqueId
+const creatUniqueId = () => {
+  uniqueId = Date.now() - Math.floor(Math.random() * 1000);
+};
 const confirmInvoice = () => {
+  creatUniqueId()
   if (!customerName.value.trim()) {
     alert("Please enter the customer name.");
     return;

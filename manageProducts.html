@@ -66,16 +66,53 @@
           <button class="btn" id="done" style="display: none">Done</button>
         </form>
       </section>
-      <section>
-        <form>
-          <input type="text" id="searchInput" placeholder="Serach" />
-          <div class="btn-container">
-            <button class="btn" id="searchName">Search by Name</button>
-            <button class="btn" id="searchCategory">Serach by Category</button>
-          </div>
-        </form>
+      <section class="viwe">
+        <table style="min-height: 100%">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Name</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Taxes</th>
+              <th>Ads</th>
+              <th>Discount</th>
+              <th>Total Price</th>
+              <th>Count</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tbodyTwo"></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3" style="text-align: start">
+                <input
+                  style="width: 100%"
+                  type="text"
+                  placeholder="Customer Name"
+                  id="customerName"
+                />
+              </td>
+              <td colspan="3" style="text-align: start">
+                <input
+                  style="width: 100%; background-color: #222218; color: white"
+                  type="number"
+                  placeholder="Discount"
+                  id="invoiceDiscount"
+                  onkeyup="getInvoiceTotalDiscount()"
+                />
+              </td>
+              <td colspan="3" style="text-align: start">Total Price</td>
+              <td colspan="3" id="invoiceTotalPrice">0</td>
+            </tr>
+          </tfoot>
+        </table>
       </section>
-      <section>
+      <button style="width: 100%" class="btn" id="compelete">Done</button>
+      <hr>
+      <section style="display: block">
         <div class="btn" id="clear" style="margin: 0 auto 20px; display: none">
           Clear All Data
         </div>
