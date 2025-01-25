@@ -6,7 +6,6 @@ const tfoot = document.getElementById("tfoot");
 const invoicesBody = document.getElementById("invoicesBody");
 const invoiceBtn = document.getElementById("invoiceBtn");
 const purchaseInvoicesBtn = document.getElementById("purchaseInvoicesBtn");
-
 // const test = () => {
 //   let newTest = purchaseInvoices[4];
 //   newTest = { ...newTest, id: 20 };
@@ -55,6 +54,7 @@ const showInvoice = (id, theInvoices) => {
         <td>${invo.finalInvoicePrice}</td>
       </tr>`;
 };
+
 purchaseInvoicesBtn.addEventListener("click", () => {
   renderAllInvoices(purchaseInvoices);
   invoicesBody.innerHTML = "";

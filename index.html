@@ -4,95 +4,115 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Invoice</title>
+    <link rel="stylesheet" href="./Css/all.min.css" />
+    <link rel="stylesheet" href="./Css/bootstrap.min.css" />
     <link rel="stylesheet" href="./Css/mainStyle.css" />
   </head>
   <body>
-    <div class="container">
-      <header>
-        <nav>
-          <a class="btn" href="./index.html"> To Invoice</a>
-          <a class="btn" href="./manageProducts.html"> To Add Products</a>
-          <a class="btn" href="./invoices.html"> To Invoices</a>
-        </nav>
-      </header>
-
-      <section>
-        <form>
+    <div class="row flex-xs-column w-md-100 main-row p-0 m-0">
+      <div class="side-bar col-sm-3 ps-3 p-1 d-flex flex-column h-md-100">
+        <div
+          class="logo w-100 p-md-2 my-md-5 text-warning d-flex gap-2 justify-content-center fs-3"
+        >
+          <p class="logo-1">Beast</p>
+          <p class="logo-2">System</p>
+        </div>
+        <div
+          class="d-flex justify-content-center gap-2 flex-md-column border-0 p-0"
+        >
+          <a class="btn w-100 text-start main-a active" href="./index.html"
+            ><i class="fa-solid fa-file-invoice me-3"></i>Invoice</a
+          >
+          <a class="btn w-100 text-start main-a" href="./manageProducts.html">
+            <i class="fa-solid fa-list-check me-3"></i>Add Products</a
+          >
+          <a class="btn w-100 text-start main-a" href="./invoices.html">
+            <i class="fa-solid fa-receipt me-3"></i>Invoices</a
+          >
+        </div>
+      </div>
+      <div class="col-sm-9 p-0 m-0">
+        <div
+          class="input-div d-flex align-items-center justify-content-center w-100 my-3"
+        >
           <input
+            class="p-1 rounded-3 text-center w-50"
             type="text"
             onkeyup="findProduct()"
             id="name"
-            placeholder="Product Name"
+            placeholder="Search"
           />
-        </form>
-      </section>
-      <section class="viwe">
-        <table>
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Name</th>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Price</th>
-              <th>Taxes</th>
-              <th>Ads</th>
-              <th>Discount</th>
-              <th>Total Price</th>
-              <th>Count</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="tbody"></tbody>
-        </table>
-      </section>
-      <section class="viwe">
-        <table style="min-height: 100%">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Name</th>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Price</th>
-              <th>Taxes</th>
-              <th>Ads</th>
-              <th>Discount</th>
-              <th>Total Price</th>
-              <th>Count</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="tbodyTwo"></tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3" style="text-align: start">
-                <input
-                  style="width: 100%"
-                  type="text"
-                  placeholder="Customer Name"
-                  id="customerName"
-                />
-              </td>
-              <td colspan="3" style="text-align: start">
-                <input
-                  style="width: 100%; background-color: #222218; color: white"
-                  type="number"
-                  placeholder="Discount"
-                  id="invoiceDiscount"
-                  onkeyup="getInvoiceTotalDiscount()"
-                />
-              </td>
-              <td colspan="3" style="text-align: start">Total Price</td>
-              <td colspan="3" id="invoiceTotalPrice">0</td>
-            </tr>
-          </tfoot>
-        </table>
-      </section>
-      <button style="width: 100%" class="btn" id="compelete">Done</button>
+        </div>
+        <div class="tabel-div table">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Taxes</th>
+                <th>Ads</th>
+                <th>Discount</th>
+                <th>Total Price</th>
+                <th>Count</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+
+        <div class="tabel-div table">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Taxes</th>
+                <th>Ads</th>
+                <th>Discount</th>
+                <th>Total Price</th>
+                <th>Count</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="tbodyTwo"></tbody>
+          </table>
+        </div>
+        <div class="tfoot-div d-flex">
+          <div
+            class="tfoot d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 "
+          >
+            <input
+              class="p-1 rounded-3 text-center"
+              type="text"
+              placeholder="Customer Name"
+              id="customerName"
+            />
+            <input
+              class="p-1 rounded-3 text-center"
+              type="number"
+              placeholder="Discount"
+              id="invoiceDiscount"
+              onkeyup="getInvoiceTotalDiscount()"
+            />
+            <div class="d-flex flex-md-column align-items-center justify-content-between">
+              <span>Total Price</span><span id="invoiceTotalPrice">0</span>
+            </div>
+            <button class="" id="compelete">Done</button>
+          </div>
+        </div>
+      </div>
     </div>
+
     <script src="./Js/invoice.js"></script>
+    <script src="./Js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

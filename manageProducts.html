@@ -4,142 +4,179 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CRUDS.JS</title>
+    <link rel="stylesheet" href="./Css/all.min.css" />
+    <link rel="stylesheet" href="./Css/bootstrap.min.css" />
     <link rel="stylesheet" href="./Css/mainStyle.css" />
   </head>
   <body>
-    <div class="container">
-      <header>
-        <div>
-          <h2>Cruds</h2>
-          <p>product managment system</p>
+    <div class="row flex-xs-column w-md-100 main-row p-0 m-0">
+      <div class="side-bar col-sm-3 ps-3 p-1 d-flex flex-column h-md-100">
+        <div
+          class="logo w-100 p-md-2 my-md-5 text-warning d-flex gap-2 justify-content-center fs-3"
+        >
+          <p class="logo-1">Beast</p>
+          <p class="logo-2">System</p>
         </div>
-        <div>
-          <nav>
-            <a class="btn" href="./index.html"> To Invoice</a>
-            <a class="btn" href="./manageProducts.html"> To Add Products</a>
-            <a class="btn" href="./invoices.html"> To Invoices</a>
-          </nav>
+        <div
+          class="d-flex justify-content-center gap-2 flex-md-column border-0 p-0"
+        >
+          <a class="btn w-100 text-start main-a" href="./index.html"
+            ><i class="fa-solid fa-file-invoice me-3"></i>Invoice</a
+          >
+          <a
+            class="btn w-100 text-start main-a active"
+            href="./manageProducts.html"
+          >
+            <i class="fa-solid fa-list-check me-3"></i>Add Products</a
+          >
+          <a class="btn w-100 text-start main-a" href="./invoices.html">
+            <i class="fa-solid fa-receipt me-3"></i>Invoices</a
+          >
         </div>
-      </header>
-      <section>
-        <form>
-          <input type="text" id="productName" placeholder="Product Name" />
-          <input type="text" id="title" placeholder="Title" />
-          <input type="text" id="category" placeholder="Category" />
-          <input type="number" id="count" placeholder="Count" />
-          <div class="price">
-            <input
-              onkeyup="getTotalPrice()"
-              type="number"
-              class="inp1"
-              id="price"
-              placeholder="Price"
-            />
-            <div class="inp12-container">
-              <input
-                onkeyup="getTotalPrice()"
-                type="number"
-                class="inp12"
-                id="taxes"
-                placeholder="Taxes"
-              />
-              <input
-                onkeyup="getTotalPrice()"
-                type="number"
-                class="inp12"
-                id="ads"
-                placeholder="Ads"
-              />
-            </div>
-            <input
-              onkeyup="getTotalPrice()"
-              type="number"
-              class="inp1"
-              id="discount"
-              placeholder="Discount"
-            />
-            <h4>Total price is <span id="totalPrice">0</span> EGP</h4>
-          </div>
-          <button class="btn" id="add" style="display: block">
-            Add Product
+      </div>
+      <div class="col-sm-9 p-0 m-0">
+        <div
+          class="input-div d-flex align-items-center justify-content-around w-100 my-3"
+        >
+          <button class="route-btn" id="addNewBtn">Add New</button>
+          <button class="route-btn" id="allProductsBtn">
+            My Products
           </button>
-          <button class="btn" id="done" style="display: none">Done</button>
-        </form>
-      </section>
-      <section class="viwe">
-        <table style="min-height: 100%">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Name</th>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Price</th>
-              <th>Taxes</th>
-              <th>Ads</th>
-              <th>Discount</th>
-              <th>Total Price</th>
-              <th>Count</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="tbodyTwo"></tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3" style="text-align: start">
+        </div>
+        <div id="addProductDiv">
+          <div class="tabel-div">
+            <form>
+              <input type="text" id="productName" placeholder="Product Name" />
+              <input type="text" id="title" placeholder="Title" />
+              <input type="text" id="category" placeholder="Category" />
+              <input type="number" id="count" placeholder="Count" />
+              <div class="price">
                 <input
-                  style="width: 100%"
-                  type="text"
-                  placeholder="Customer Name"
-                  id="customerName"
-                />
-              </td>
-              <td colspan="3" style="text-align: start">
-                <input
-                  style="width: 100%; background-color: #222218; color: white"
+                  onkeyup="getTotalPrice()"
                   type="number"
-                  placeholder="Discount"
-                  id="invoiceDiscount"
-                  onkeyup="getInvoiceTotalDiscount()"
+                  class="inp1"
+                  id="price"
+                  placeholder="Price"
                 />
-              </td>
-              <td colspan="3" style="text-align: start">Total Price</td>
-              <td colspan="3" id="invoiceTotalPrice">0</td>
-            </tr>
-          </tfoot>
-        </table>
-      </section>
-      <button style="width: 100%" class="btn" id="compelete">Done</button>
-      <hr>
-      <section style="display: block">
-        <div class="btn" id="clear" style="margin: 0 auto 20px; display: none">
-          Clear All Data
+                <div class="inp12-container">
+                  <input
+                    onkeyup="getTotalPrice()"
+                    type="number"
+                    class="inp12"
+                    id="taxes"
+                    placeholder="Taxes"
+                  />
+                  <input
+                    onkeyup="getTotalPrice()"
+                    type="number"
+                    class="inp12"
+                    id="ads"
+                    placeholder="Ads"
+                  />
+                </div>
+                <input
+                  onkeyup="getTotalPrice()"
+                  type="number"
+                  class="inp1"
+                  id="discount"
+                  placeholder="Discount"
+                />
+                <h4>Total price is <span id="totalPrice">0</span> EGP</h4>
+              </div>
+              <button class="btn" id="add" style="display: block">
+                Add Product
+              </button>
+              <button class="btn" id="done" style="display: none">Done</button>
+            </form>
+          </div>
+          <div class="tabel-div table">
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Name</th>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Taxes</th>
+                  <th>Ads</th>
+                  <th>Discount</th>
+                  <th>Total Price</th>
+                  <th>Count</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="tbodyTwo"></tbody>
+            </table>
+          </div>
+          <div class="tfoot-div d-flex">
+            <div
+              class="tfoot d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2"
+            >
+              <input
+                class="p-1 rounded-3 text-center"
+                type="text"
+                placeholder="Customer Name"
+                id="customerName"
+              />
+              <input
+                class="p-1 rounded-3 text-center"
+                type="number"
+                placeholder="Discount"
+                id="invoiceDiscount"
+                onkeyup="getInvoiceTotalDiscount()"
+              />
+              <div
+                class="d-flex flex-md-column align-items-center justify-content-between"
+              >
+                <span>Total Price</span><span id="invoiceTotalPrice">0</span>
+              </div>
+              <button class="" id="compelete">Done</button>
+            </div>
+          </div>
         </div>
-        <div class="btn" id="reset" style="margin: 0 auto 20px; display: none">
-          Reset Data <span id="tester"></span>
+        <div id="allProductsDiv" style="display: none">
+          <div
+            class="btn"
+            id="clear"
+            style="margin: 0 auto 20px; display: none"
+          >
+            Clear All Data
+          </div>
+          <div
+            class="btn"
+            id="reset"
+            style="margin: 0 auto 20px; display: none"
+          >
+            Reset Data <span id="tester"></span>
+          </div>
+          <div class="tabel-div table pt-0">
+            <table>
+              <thead class="sticky-top bg-light">
+                <tr>
+                  <th>No</th>
+                  <th>Name</th>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Taxes</th>
+                  <th>Ads</th>
+                  <th>Discount</th>
+                  <th>Total Price</th>
+                  <th>Count</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Name</th>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Price</th>
-              <th>Taxes</th>
-              <th>Ads</th>
-              <th>Discount</th>
-              <th>Total Price</th>
-              <th>Count</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="tbody"></tbody>
-        </table>
-      </section>
+      </div>
     </div>
+
     <script src="./Js/manageProducts.js"></script>
+    <script src="./Js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

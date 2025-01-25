@@ -3,24 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./Css/all.min.css" />
+    <link rel="stylesheet" href="./Css/bootstrap.min.css" />
     <link rel="stylesheet" href="./Css/mainStyle.css" />
     <title>Invoices</title>
   </head>
   <body>
-    <div class="container">
-      <header>
-          <nav>
-            <a class="btn" href="./index.html"> To Invoice</a>
-            <a class="btn" href="./manageProducts.html"> To Add Products</a>
-            <a class="btn" href="./invoices.html"> To Invoices</a>
-          </nav>
-          <hr>
-          <nav>
-            <button class="btn" id="invoiceBtn"> To Invoice</button>
-            <button class="btn" id="purchaseInvoicesBtn"> Purchase Invoices</button>
-          </nav>
-      </header>
-      <section class="viwe">
+    <div class="row flex-xs-column w-md-100 main-row p-0 m-0">
+      <div class="side-bar col-sm-3 ps-3 p-1 d-flex flex-column h-md-100">
+        <div
+          class="logo w-100 p-md-2 my-md-5 text-warning d-flex gap-2 justify-content-center fs-3"
+        >
+          <p class="logo-1">Beast</p>
+          <p class="logo-2">System</p>
+        </div>
+        <div
+          class="d-flex justify-content-center gap-2 flex-md-column border-0 p-0"
+        >
+          <a class="btn w-100 text-start main-a " href="./index.html"
+            ><i class="fa-solid fa-file-invoice me-3"></i>Invoice</a
+          >
+          <a class="btn w-100 text-start main-a" href="./manageProducts.html">
+            <i class="fa-solid fa-list-check me-3"></i>Add Products</a
+          >
+          <a class="btn w-100 text-start main-a active" href="./invoices.html">
+            <i class="fa-solid fa-receipt me-3"></i>Invoices</a
+          >
+        </div>
+      </div>
+      <div class="col-sm-9 p-0 m-0">
+        <div
+            class="input-div d-flex align-items-center justify-content-around w-100 my-3"
+          >
+            <button class="route-btn" id="invoiceBtn">Invoices</button>
+            <button class="route-btn" id="purchaseInvoicesBtn">Purchase Invoices</button>
+          </div>
+      <div class="tabel-div table tt">
         <table>
           <thead>
             <tr>
@@ -30,8 +48,8 @@
           </thead>
           <tbody id="tbody"></tbody>
         </table>
-      </section>
-      <section class="viwe">
+      </div>
+      <div class="tabel-div table tt">
         <table>
           <thead>
             <tr>
@@ -51,10 +69,10 @@
           </thead>
           <tbody id="invoicesBody"></tbody>
         </table>
+      </div>
       </section>
-      </section>
-      <section class="viwe" style="height: 10vh;border: none; ">
-        <table >
+      <section >
+        <table class="test">
           <thead>
             <tr>
               <td>Name</td>
@@ -68,6 +86,8 @@
         </table>
       </section>
     </div>
+  </div>
     <script src="./Js/invoices.js"></script>
+    <script src="./Js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

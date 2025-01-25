@@ -21,6 +21,10 @@ const tbodyTwo = document.getElementById("tbodyTwo");
 const invoiceTotalPrice = document.getElementById("invoiceTotalPrice");
 const invoiceDiscount = document.getElementById("invoiceDiscount");
 const customerName = document.getElementById("customerName");
+const addProductDiv = document.getElementById("addProductDiv");
+const allProductsDiv = document.getElementById("allProductsDiv");
+const allProductsBtn = document.getElementById("allProductsBtn");
+const addNewBtn = document.getElementById("addNewBtn");
 // Used Variables
 let products =
   localStorage.products != null ? JSON.parse(localStorage.products) : [];
@@ -41,6 +45,14 @@ let totalPriceBeforDiscount = 0;
 // };
 // test();
 // =>
+addNewBtn.addEventListener("click", () => {
+  addProductDiv.style.display = "block";
+  allProductsDiv.style.display = "none";
+});
+allProductsBtn.addEventListener("click", () => {
+  addProductDiv.style.display = "none";
+  allProductsDiv.style.display = "block";
+});
 const creatUniqueId = () => {
   uniqueId = Date.now() - Math.floor(Math.random() * 1000);
 };
@@ -190,7 +202,7 @@ const confirmInvoice = () => {
     name: customerName.value,
   };
   newProducts.forEach((produ) => {
-    const prodIdex = products.findIndex((pro) => pro.name === produ.name);
+    const prodIdex = products.findIndex((pro) => pro.name.trim() === produ.name.trim());
     if (prodIdex !== -1) {
       products[prodIdex].count += produ.count;
     } else {
@@ -205,6 +217,7 @@ const confirmInvoice = () => {
   rendernewProducts();
   GetInvoiceTotalPrice();
   clearInputsAfterAdd();
+  renderData()
 };
 compelete.addEventListener("click", confirmInvoice);
 
@@ -224,6 +237,7 @@ const clearInputsAfterAdd = () => {
   invoiceTotalPrice.innerHTML = 0;
 };
 // to render the products to user to see it
+
 const renderData = () =>
   (tbody.innerHTML = products
     .map(
@@ -238,8 +252,8 @@ const renderData = () =>
 <td>${item.discount}</td>
 <td>${item.totalPrice}</td>
 <td>${item.count}</td>
-<td><button class="btn" onClick='updateProduct(${item.id})'>Update</button></td>
-<td><button class="btn" onClick='deleteProduct(${item.id})'>Delete</button></td>
+<td><button class="" onClick='updateProduct(${item.id})'><i class="fa-regular fa-pen-to-square"></i></button></td>
+<td><button style = 'color: red; onClick='deleteProduct(${item.id})'>${item.count > 1? `<i class="fa-solid fa-minus"></i>`: `<i class="fa-solid fa-xmark"></i>`}</button></td>
 </tr>`
     )
     .join(""));
@@ -256,10 +270,12 @@ const deleteProduct = (id) => {
     productsAfterDlete.splice(index, 1);
   }
   localStorage.setItem("products", JSON.stringify(productsAfterDlete));
-  renderData();
+  // renderData();
 };
 // function to update product data
 const updateProduct = (id) => {
+  allProductsDiv.style.display = 'none'
+  addProductDiv.style.display = 'block'
   const index = products.findIndex((i) => i.id === id);
   let productsBeforUpdate = [...products];
   let product = productsBeforUpdate.find((item) => item.id === id);
@@ -274,7 +290,10 @@ const updateProduct = (id) => {
   totalPrice.innerHTML = product.totalPrice;
   addBtn.style.display = "none";
   doneBtn.style.display = "block";
-  doneBtn.onclick = function () {
+  doneBtn.onclick = function (e) {
+    e.preventDefault()
+    allProductsDiv.style.display = 'block'
+  addProductDiv.style.display = 'none'
     let updatedProduct = {
       id: id,
       name: productName.value,

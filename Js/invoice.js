@@ -37,7 +37,7 @@ const renderProducts = () => {
 <td>${i.discount}</td>
 <td>${i.totalPrice}</td>
 <td>${i.count}</td>
-<td><button class="btn" onClick='selectProduct(${i.id})'>Select</button></td>
+<td><button class="" onClick='selectProduct(${i.id})'>Select</button></td>
 </tr>`
     )
     .join("");
@@ -74,8 +74,8 @@ const renderSelectedProducts = () => {
         <td>${m.count}</td>
         <td>
           <div class="btns" >
-            <button class="btn" onClick='decreaseProduct(${m.id})'>-</button>
-            <button class="btn" onClick='increaseProduct(${m.id})'>+</button>
+            <button class="" onClick='decreaseProduct(${m.id})'>-</button>
+            <button class="" onClick='increaseProduct(${m.id})'>+</button>
           </div>
         </td>
       </tr>`
