@@ -22,12 +22,11 @@
 .logo {
   font-family: cursive;
 }
-.logo-1::first-letter,
-.logo-2::first-letter {
+.logo-1::first-letter {
+  margin: 0;
   color: red;
   font-size: 35px;
 }
-
 .input-div {
   height: 50px;
   background-color: black;
@@ -91,11 +90,20 @@ button:hover {
 .tfoot input {
   margin: 15px 0;
 }
-.test{
+.test {
   background-color: black;
   color: white;
   height: 7vh;
-
+}
+.add-form input {
+  margin: 10px 5px;
+  padding: 4px;
+  border: 0.5px solid;
+  border-radius: 5px;
+  text-align: center;
+}
+.all-p{
+  height: 80vh;
 }
 @media (max-width: 575px) {
   .main-row {
@@ -145,7 +153,17 @@ button:hover {
   span {
     font-size: 10px;
   }
-  .tt{
+  .tt {
     height: 33vh;
+  }
+  .add-form input {
+    margin: 3px 3px;
+    padding: 1px;
+    border: 0.5px solid;
+    border-radius: 5px;
+    text-align: center;
+  }
+  .all-p{
+    height: 62vh;
   }
 }

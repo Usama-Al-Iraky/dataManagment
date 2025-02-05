@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CRUDS.JS</title>
+    <title>Managify</title>
     <link rel="stylesheet" href="./Css/all.min.css" />
     <link rel="stylesheet" href="./Css/bootstrap.min.css" />
     <link rel="stylesheet" href="./Css/mainStyle.css" />
@@ -14,8 +14,7 @@
         <div
           class="logo w-100 p-md-2 my-md-5 text-warning d-flex gap-2 justify-content-center fs-3"
         >
-          <p class="logo-1">Beast</p>
-          <p class="logo-2">System</p>
+          <p class="logo-1">Managify</p>
         </div>
         <div
           class="d-flex justify-content-center gap-2 flex-md-column border-0 p-0"
@@ -39,56 +38,76 @@
           class="input-div d-flex align-items-center justify-content-around w-100 my-3"
         >
           <button class="route-btn" id="addNewBtn">Add New</button>
-          <button class="route-btn" id="allProductsBtn">
-            My Products
-          </button>
+          <button class="route-btn" id="allProductsBtn">My Products</button>
         </div>
         <div id="addProductDiv">
-          <div class="tabel-div">
-            <form>
-              <input type="text" id="productName" placeholder="Product Name" />
-              <input type="text" id="title" placeholder="Title" />
-              <input type="text" id="category" placeholder="Category" />
-              <input type="number" id="count" placeholder="Count" />
+            <form class="add-form w-75 m-auto text-center">
+              <div
+                class="d-flex flex-column flex-sm-row justify-content-between p-0"
+              >
+                <input
+                  class="shadow w-100"
+                  type="text"
+                  id="productName"
+                  placeholder="Product Name"
+                />
+                <input
+                  class="shadow w-100"
+                  type="text"
+                  id="title"
+                  placeholder="Title"
+                />
+                <input
+                  class="shadow w-100"
+                  type="text"
+                  id="category"
+                  placeholder="Category"
+                />
+              </div>
               <div class="price">
+                <input
+                  class="shadow w-100"
+                  type="number"
+                  id="count"
+                  placeholder="Count"
+                />
                 <input
                   onkeyup="getTotalPrice()"
                   type="number"
-                  class="inp1"
+                  class="shadow w-100"
                   id="price"
                   placeholder="Price"
                 />
-                <div class="inp12-container">
-                  <input
-                    onkeyup="getTotalPrice()"
-                    type="number"
-                    class="inp12"
-                    id="taxes"
-                    placeholder="Taxes"
-                  />
-                  <input
-                    onkeyup="getTotalPrice()"
-                    type="number"
-                    class="inp12"
-                    id="ads"
-                    placeholder="Ads"
-                  />
-                </div>
                 <input
                   onkeyup="getTotalPrice()"
                   type="number"
-                  class="inp1"
+                  class="shadow w-100"
+                  id="taxes"
+                  placeholder="Taxes"
+                />
+                <input
+                  onkeyup="getTotalPrice()"
+                  type="number"
+                  class="shadow w-100"
+                  id="ads"
+                  placeholder="Ads"
+                />
+                <input
+                  onkeyup="getTotalPrice()"
+                  type="number"
+                  class="shadow w-100"
                   id="discount"
                   placeholder="Discount"
                 />
-                <h4>Total price is <span id="totalPrice">0</span> EGP</h4>
+                <h4>Total price is <p class="m-0 p-0 d-inline" id="totalPrice">0</p> EGP</h4>
+                <button class="w-100" id="add" style="display: block">
+                  Add Product
+                </button>
+                <button class="w-100" id="done" style="display: none">
+                  Done
+                </button>
               </div>
-              <button class="btn" id="add" style="display: block">
-                Add Product
-              </button>
-              <button class="btn" id="done" style="display: none">Done</button>
             </form>
-          </div>
           <div class="tabel-div table">
             <table>
               <thead>
@@ -136,7 +155,7 @@
             </div>
           </div>
         </div>
-        <div id="allProductsDiv" style="display: none">
+        <div id="allProductsDiv" style="display: none;">
           <div
             class="btn"
             id="clear"
@@ -151,7 +170,7 @@
           >
             Reset Data <span id="tester"></span>
           </div>
-          <div class="tabel-div table pt-0">
+          <div class="tabel-div all-p table pt-0">
             <table>
               <thead class="sticky-top bg-light">
                 <tr>
